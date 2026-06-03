@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habibat Restaurant | Premium African & Continental Dining</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND IDENTITY & DESIGN SYSTEM --- */
+        :root {
+            --primary-accent: #D4AF37; /* Premium Gold */
+            --deep-blue: #0A192F;      /* Luxury Deep Blue */
+            --solid-black: #050505;    /* Deep Jet Black */
+            --pure-white: #FFFFFF;     /* Pure White */
+            --light-gray: #F9F9F9;
+            --mid-gray: #888888;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--solid-black);
+            color: var(--pure-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--pure-white);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-accent);
+            text-align: center;
+            margin-bottom: 3.5rem;
+            font-weight: 500;
+        }
+
+        /* --- STICKY NAVIGATION --- */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(5, 5, 5, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--pure-white);
+        }
+
+        .logo span {
+            color: var(--primary-accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            position: relative;
+            padding: 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-accent);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--primary-accent);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--pure-white);
+            font-size: 1.5rem;
+        }
+
+        /* --- APP VIEWPORT ROUTING --- */
+        .page-view {
+            display: none;
+            padding-top: 80px; /* Offset for fixed header */
+            animation: fadeIn 0.6s ease-in-out forwards;
+        }
+
+        .page-view.active-view {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- BUTTONS --- */
+        .btn-premium {
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 1rem 2.5rem;
+            background-color: transparent;
+            color: var(--primary-accent);
+            border: 1px solid var(--primary-accent);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-premium:hover {
+            color: var(--solid-black);
+            background-color: var(--primary-accent);
+        }
+
+        /* --- HOME PAGE HERO --- */
+        .hero-section {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.85)), 
+                        url('https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            font-family: var(--font-sans);
+        }
+
+        /* --- EDITORIAL HOME SECTIONS --- */
+        .home-intro-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .intro-text-block h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--pure-white);
+        }
+
+        .intro-text-block p {
+            color: var(--mid-gray);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .intro-image-block {
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 1rem;
+        }
+
+        /* --- ABOUT PAGE --- */
+        .about-story-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .about-story-section p {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+            margin-bottom: 4rem;
+        }
+
+        .about-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .about-card {
+            background-color: rgba(10, 25, 47, 0.4);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+
+        .about-card:hover {
+            border-color: var(--primary-accent);
+            transform: translateY(-5px);
+        }
+
+        .about-card i {
+            color: var(--primary-accent);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--pure-white);
+        }
+
+        .about-card p {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+        }
+
+        /* --- MENU & SPECIALS EDITORIAL GRID --- */
+        .menu-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-card {
+            background-color: var(--solid-black);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-card:hover {
+            border-color: var(--primary-accent);
+        }
+
+        .menu-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .menu-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+
+        .menu-card:hover .menu-img-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .menu-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: var(--primary-accent);
+            color: var(--solid-black);
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .menu-info {
+            padding: 1.8rem;
+        }
+
+        .menu-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.8rem;
+        }
+
+        .menu-title {
+            font-size: 1.6rem;
+            color: var(--pure-white);
+        }
+
+        .menu-price {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            font-weight: 600;
+        }
+
+        .menu-description {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+        }
+
+        /* --- CONTACT PAGE (EXACT REFERENCE PATTERN STRUCTURE) --- */
+        .contact-editorial-layout {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+        }
+
+        .contact-form-block {
+            background-color: rgba(10, 25, 47, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 3.5rem;
+        }
+
+        .contact-form-block h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form-block p {
+            color: var(--mid-gray);
+            margin-bottom: 2.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Custom Success Container Switching Dynamic Architecture */
+        .success-container {
+            display: none;
+            text-align: center;
+            padding: 3rem 1rem;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        .success-container i {
+            color: var(--primary-accent);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .success-container h4 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--pure-white);
+        }
+
+        .form-group-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-control {
+            width: 100%;
+            background-color: rgba(5, 5, 5, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            color: var(--pure-white);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            background-color: rgba(10, 25, 47, 0.5);
+        }
+
+        textarea.form-control {
+            resize: none;
+            height: 150px;
+        }
+
+        /* Right Side Data & Hours Grid Block */
+        .contact-details-block {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-card-box {
+            border-left: 2px solid var(--primary-accent);
+            padding-left: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card-box h4 {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .detail-item i {
+            color: var(--primary-accent);
+            width: 20px;
+        }
+
+        .hours-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+        }
+
+        .hours-list span.day {
+            color: var(--mid-gray);
+        }
+
+        .hours-list span.time {
+            color: var(--pure-white);
+            font-weight: 500;
+        }
+
+        /* Delivery Badge Area */
+        .delivery-callout {
+            margin-top: auto;
+            background: linear-gradient(45deg, var(--deep-blue), var(--solid-black));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .delivery-callout h5 {
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-accent);
+            margin-bottom: 1rem;
+        }
+
+        .delivery-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .delivery-partner {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1.2rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* MAP SECTION COMPONENT */
+        .map-section-container {
+            max-width: 1300px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .map-wrapper {
+            position: relative;
+            height: 450px;
+            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            filter: grayscale(1) invert(0.9) contrast(1.2); /* Premium Dark Styling Map Overlays */
+        }
+
+        .map-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- GLOBAL PREMIUM FOOTER --- */
+        footer {
+            background-color: #030303;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 5rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-brand h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--mid-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            max-width: 350px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        .footer-socials a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--pure-white);
+            font-size: 0.95rem;
+        }
+
+        .footer-socials a:hover {
+            color: var(--solid-black);
+            background-color: var(--primary-accent);
+            border-color: var(--primary-accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-links-col h5 {
+            font-family: var(--font-sans);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--primary-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+        }
+
+        .footer-links-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links-list a {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+            cursor: pointer;
+        }
+
+        .footer-links-list a:hover {
+            color: var(--pure-white);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--mid-gray);
+        }
+
+        .agency-credit {
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .agency-credit a {
+            color: var(--primary-accent);
+            border-bottom: 1px dotted var(--primary-accent);
+        }
+
+        /* --- RESPONSIVE DESIGN ENGINE --- */
+        @media (max-width: 1024px) {
+            .home-intro-grid, .contact-editorial-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 14px; }
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--solid-black);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 3rem;
+                gap: 2rem;
+                transition: 0.4s ease;
+                border-top: 1px solid rgba(212, 175, 55, 0.1);
+            }
+            .nav-menu.mobile-active {
+                left: 0;
+            }
+            .hamburger {
+                display: block;
+            }
+            .contact-form-block {
+                padding: 2rem;
+            }
+            .form-group-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-nav">
+        <div class="nav-container">
+            <a onclick="navigateTo('home')" class="logo">HABIBAT<span>.</span></a>
+            <button class="hamburger" id="menu-toggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a onclick="navigateTo('home')" class="nav-link active" data-page="home">Home</a></li>
+                <li><a onclick="navigateTo('about')" class="nav-link" data-page="about">About</a></li>
+                <li><a onclick="navigateTo('menu')" class="nav-link" data-page="menu">Menu</a></li>
+                <li><a onclick="navigateTo('specials')" class="nav-link" data-page="specials">Specials</a></li>
+                <li><a onclick="navigateTo('contact')" class="nav-link" data-page="contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="home" class="page-view active-view">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="animate-text">An Elegant Fusion of Taste & Luxury</h1>
+                <p>Experience standard, masterfully developed culinary art pieces in the heart of Abuja. Designed for refined tastes.</p>
+                <button onclick="navigateTo('menu')" class="btn-premium">Explore The Menu</button>
+            </div>
+        </section>
+
+        <section class="home-intro-grid">
+            <div class="intro-text-block">
+                <h2>The Art of Culinary Sophistication</h2>
+                <p>Welcome to Habibat Restaurant, where premium ingredients meet unparalleled African culinary craftsmanship. Every dish is a curated journey, structured carefully to respect classic gastronic roots while modernizing execution formats perfectly.</p>
+                <button onclick="navigateTo('about')" class="btn-premium">Our Philosophy</button>
+            </div>
+            <div class="intro-image-block">
+                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800" alt="Premium Culinary Setup">
+            </div>
+        </section>
+
+        <section class="map-section-container">
+            <h2 class="section-title">Find Us</h2>
+            <div class="section-subtitle">Mopol 21, Nyanya, Abuja</div>
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.457813876615!2d7.575646175944116!3d9.021946089104085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e037ef9a552fb%3A0xe7a505b822d36ab5!2sNyanya%20Mopol%2021%20Barracks%2C%20Abuja!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <main id="about" class="page-view">
+        <section class="about-story-section">
+            <h2 class="section-title">Our Story</h2>
+            <div class="section-subtitle">Crafting Excellence</div>
+            <p>"We believe that dining is not merely an act of consumption, but an immersive artistic experience that binds architecture, texture, taste, and premium presentation structures into a single timeline."</p>
+        </section>
+
+        <section class="about-grid">
+            <div class="about-card">
+                <i class="fa-solid fa-plate-wheat"></i>
+                <h3>Noble Ingredients</h3>
+                <p>Sourced directly from verified sustainable farms in the region, bringing fresh organic textures straight to your plate layout.</p>
+            </div>
+            <div class="about-card">
+                <i class="fa-solid fa-utensils"></i>
+                <h3>Master Chefs</h3>
+                <p>Our culinary directors maintain meticulous attention to detail inside high-contrast minimalist assembly processes.</p>
+            </div>
+            <div class="about-card">
+                <i class="fa-solid fa-wine-glass"></i>
+                <h3>Bespoke Ambience</h3>
+                <p>Every element, from custom structural lines to standard ambient illumination accents, matches luxury frameworks.</p>
+            </div>
+        </section>
+    </main>
+
+    <main id="menu" class="page-view">
+        <section class="menu-container">
+            <h2 class="section-title">The Master Menu</h2>
+            <div class="section-subtitle">A Curated Gastronomic Sequence</div>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <span class="menu-badge">Signature</span>
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600" alt="Signature Platter">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-meta">
+                            <h3 class="menu-title">Royal Jollof Ensemble</h3>
+                            <span class="menu-price">₦18,500</span>
+                        </div>
+                        <p class="menu-description">Smoked baseline premium rice served with glazed native micro-herbs, plantain reductions, and slow-roasted protein profiles.</p>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600" alt="Charcoal Grills">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-meta">
+                            <h3 class="menu-title">Prime Suya Cutlets</h3>
+                            <span class="menu-price">₦24,000</span>
+                        </div>
+                        <p class="menu-description">Aged tenderloin wagyu slivers rubbed with traditional northern spice arrays, char-grilled over premium wood embers.</p>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&q=80&w=600" alt="Seafood Soup">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-meta">
+                            <h3 class="menu-title">Fisherman's Luxury Bouillon</h3>
+                            <span class="menu-price">₦32,000</span>
+                        </div>
+                        <p class="menu-description">Freshly harvested Atlantic prawns, calamari, and white fish simmered gracefully in a vibrant lemongrass basil broth.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="specials" class="page-view">
+        <section class="menu-container">
+            <h2 class="section-title">Seasonal Specials</h2>
+            <div class="section-subtitle">Limited Curations</div>
+            
+            <div class="menu-grid">
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <span class="menu-badge">Limited Time</span>
+                        <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&q=80&w=600" alt="Dry Aged Beef">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-meta">
+                            <h3 class="menu-title">Dry-Aged Tomahawk with Nativist Spices</h3>
+                            <span class="menu-price">₦75,000</span>
+                        </div>
+                        <p class="menu-description">45-day custom dry-aged beef, expertly seared in rosemary gold butter, paired perfectly with localized premium pepper purees.</p>
+                    </div>
+                </div>
+                <div class="menu-card">
+                    <div class="menu-img-wrapper">
+                        <span class="menu-badge">Weekend Only</span>
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=600" alt="Premium Caviar">
+                    </div>
+                    <div class="menu-info">
+                        <div class="menu-meta">
+                            <h3 class="menu-title">Caviar infused Yam Carpaccio</h3>
+                            <span class="menu-price">₦42,000</span>
+                        </div>
+                        <p class="menu-description">Ultra-thin blanched luxury sweet yam layers garnished with premium Ossetra caviar drops and cold-pressed olive derivatives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main id="contact" class="page-view">
+        <section class="contact-editorial-layout">
+            
+            <div class="contact-form-block">
+                <div id="form-interactive-wrapper">
+                    <h3>Get in Touch</h3>
+                    <p>We'd love to hear from you! Whether you have a question about our menu, or just want to say hello, we're here for you.</p>
+                    
+                    <form id="restaurant-contact-form" onsubmit="handleFormSubmission(event)">
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-premium" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="success-container" id="form-success-container">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h4>Thanks for Reaching Out!</h4>
+                    <p>Your premium inquiry dataset has been routed cleanly to our concierge staff. We will connect back with you within the hour.</p>
+                </div>
+            </div>
+
+            <div class="contact-details-block">
+                <div class="info-card-box">
+                    <h4>Come See Us!</h4>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Mopol 21, Nyanya, Abuja.</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <a href="tel:+2349046567609">+234-9046567609</a>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <a href="https://wa.me/2349057456644" target="_blank">Chat via WhatsApp</a>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:burricooldevelopment.com03@gmail.com">burricooldevelopment.com03@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="info-card-box">
+                    <h4>Operational Hours</h4>
+                    <ul class="hours-list">
+                        <li><span class="day">Sunday – Thursday</span> <span class="time">9am – 10pm</span></li>
+                        <li><span class="day">Friday & Saturday</span> <span class="time">9am – 11pm</span></li>
+                    </ul>
+                </div>
+
+                <div class="delivery-callout">
+                    <h5>Local Ordering Alternatives</h5>
+                    <div class="delivery-badges">
+                        <div class="delivery-partner"><i class="fa-solid fa-motorcycle"></i> Bolt Food</div>
+                        <div class="delivery-partner"><i class="fa-solid fa-bag-shopping"></i> Chowdeck</div>
+                        <div class="delivery-partner"><i class="fa-solid fa-box"></i> Glovo</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section-container" style="margin-top: -2rem;">
+            <div class="map-wrapper">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.457813876615!2d7.575646175944116!3d9.021946089104085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e037ef9a552fb%3A0xe7a505b822d36ab5!2sNyanya%20Mopol%2021%20Barracks%2C%20Abuja!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h4>HABIBAT<span>.</span></h4>
+                <p>Bringing premium, minimalist conceptual layouts and luxury African dining directly under standard engineering perspectives.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="https://wa.me/2349057456644" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-links-col">
+                <h5>Navigation</h5>
+                <ul class="footer-links-list">
+                    <li><a onclick="navigateTo('home')">Home</a></li>
+                    <li><a onclick="navigateTo('about')">About Us</a></li>
+                    <li><a onclick="navigateTo('menu')">The Menu</a></li>
+                    <li><a onclick="navigateTo('specials')">Seasonal Specials</a></li>
+                    <li><a onclick="navigateTo('contact')">Contact Venue</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h5>Location Vector</h5>
+                <p style="color: var(--mid-gray); font-size: 0.9rem; line-height: 1.8;">
+                    Mopol 21, Nyanya,<br>
+                    Abuja, Nigeria.<br><br>
+                    <span style="color: var(--primary-accent);">Hotline:</span> +234-9046567609
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Habibat Restaurant. All Rights Reserved.</p>
+            <p class="agency-credit">Designed & Developed by <a href="https://burricooldevelopment.com" target="_blank">burricooldevelopment.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab routing architecture modeled to cleanly display layouts dynamically
+        function navigateTo(pageId) {
+            // Retrieve all defined view elements
+            const views = document.querySelectorAll('.page-view');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            views.forEach(view => {
+                view.classList.remove('active-view');
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-page') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            const activeTarget = document.getElementById(pageId);
+            if(activeTarget) {
+                activeTarget.classList.add('active-view');
+                window.scrollTo(0, 0);
+            }
+
+            // Collapse Mobile Navigation Panel if open
+            const menu = document.getElementById('nav-menu');
+            menu.classList.remove('mobile-active');
+        }
+
+        // Mobile Burger Menu Toggle Intercept Pattern
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('mobile-active');
+        });
+
+        // Contact Input Form Elegant Success Transition Intercept Engine
+        function handleFormSubmission(event) {
+            event.preventDefault(); // Halt systemic page reload formats
+            
+            const interactiveWrapper = document.getElementById('form-interactive-wrapper');
+            const successContainer = document.getElementById('form-success-container');
+            
+            // Execute sleek aesthetic UI grid exchange sequence
+            interactiveWrapper.style.display = 'none';
+            successContainer.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
